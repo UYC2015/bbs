@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>WORLD Freee Communication Tools</title>
+  <link rel="shortcut icon" href="assets/picture/Favi.png">
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/custom_Media.css">
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+
+<body>
+
+<!--オーディオ-->
+  <audio>
+      <source src="assets/audio/WebSiteBGM.mp3">
+   </audio>
+
+
+ 　<div class="Bar"></div>
+ 
+  <div class="hidden_box">
+    <label for="label1">Menu</label>
+      <input type="checkbox" id="label1"/>
+       <div class="hidden_show">
+         <!--内容-->
+         <!--<p>トークメニュー</p>-->
+         <div class="Menu2">
+           
+           <!--メニューの内容-->
+         <input type="bottom">
+         </div>
+         
+         <h2>COOOOOOO</h2>
+         
+      </div>
+  </div>
+
+<!--<div id="content">
+ 
+    <div class="sample">
+ 
+        <h1 id="start">リンク画像を上部に固定する</h1>
+        <h2>サンプル1.　ブラウザの最左に設置</h2>
+ 
+        <p>スクロールしてください。</p>
+        <p><a href="./index2.html">デモ２へ</a></p>-->
+
+<main>   
+  <div class="container">
+  <ul>
+    <% @contents.each do |content| %>
+    <li>
+      <!--吹き出しはじまり-->
+      <div class="balloon5">
+        <!--<div class="faceicon">-->
+        <!--<img src="assets/picture/013880e.png">-->
+        <!--</div>-->
+        <div class="chatting">
+          <div class="says">
+            <p class="contbody"><%= content.body %></p>
+            <p class="contname">投稿者：<%= content.name %>さん</p>
+            <span class="time_at"><%= content.created_at %></span>
+            <p class="good_nam">いいね!:<%= content.good %></p>
+            <span>
+              <form action="/delete/<%= content.id %>" method="post">
+                <input type="submit" value="消去" class="btn btn-info">
+                </form>
+            </span>
+             <span>
+              <form action="/edit/<%= content.id %>" method="post">
+                <input type="submit" value="編集" class="btn btn-info">
+                </form>
+            </span>
+            <span>
+              <form action="/good/<%= content.id %>" method="post">
+               <input type="submit" value="いいね！" class="btn btn-info">
+              </form>
+            </span>
+            
+            
+          </div>
+        </div>
+      </div>
+      <!--吹き出し終わり-->
+      
+      
+    </li>
+    <%end%>
+  </ul>
+  </div>
+  <form id="underbar" action="/new" method="post" class="talkber">
+    <p>NAME:<input type="text" name="user_name" class="form-control"></p>
+    <p>TEXT:<input type="text" name="body" class="form-control"></p>
+    <input type="submit" value="送信✈" class="btn btn-secondary">
+  </form>
+</main>  
+
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+  
+		<script>
+		$(function(){
+	$(window).on("scroll touchmove", function(){ //スクロール中に判断する
+			$("#underbar").stop(); //アニメーションしている場合、アニメーションを強制停止
+			$("#underbar").css('display', 'none').delay(500).fadeIn('fast');
+			//スクロール中は非表示にして、500ミリ秒遅らせて再び表示
+	});
+});
+</script>
+  
+</body>
+</html>
